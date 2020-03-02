@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  DB_DRIVER: oracle.jdbc.OracleDriver
+  DB_URL: "jdbc:oracle:thin:@192.168.1.220:1521:tdb1"
+  DB_USERNAME: camunda
+  WAIT_FOR: 192.168.1.220:1521
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2020-03-01T14:25:33Z"
+  name: camunda-config
+  namespace: default
