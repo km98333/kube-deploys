@@ -23,10 +23,28 @@ spec:
       labels:
         app: jenkins
     spec:
+      initContainers:
+      - name: pgsql-data-permission-fix
+        image: busybox
+        #command: ["/bin/chmod","-R","755", "/var/jenkins_home/"]
+        command: ["/bin/chown","-R","1000", "/var/jenkins_home/"]
+        volumeMounts:
+        - name: jenkinshome
+          mountPath: /var/jenkins_home/
       containers:
       - image: jenkins/jenkins:lts
         imagePullPolicy: Always
         name: jenkins
-        resources: {}
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
+        volumeMounts:
+        - name: jenkinshome
+          mountPath: /var/jenkins_home/
+      volumes:
+      - name: jenkinshome
+        flexVolume:
+          driver: rook.io/rook
+          fsType: ceph
+          options:
+            fsName: jenkinshome
+            clusterNamespace: rook-ceph
+            #path: "/"
+ 

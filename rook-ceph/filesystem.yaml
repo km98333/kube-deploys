@@ -7,7 +7,7 @@
 apiVersion: ceph.rook.io/v1
 kind: CephFilesystem
 metadata:
-  name: myfs
+  name: jenkinshome
   namespace: rook-ceph
 spec:
   # The metadata pool spec. Must use replication.
