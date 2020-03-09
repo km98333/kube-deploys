@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: artifactory
+  name: artifactory
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: jeden
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+  - name: dwa
+    port: 8082
+    protocol: TCP
+    targetPort: 8082
+    
+  selector:
+    app: artifactory
+  sessionAffinity: None
+  type: LoadBalancer
