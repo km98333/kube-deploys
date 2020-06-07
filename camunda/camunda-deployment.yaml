@@ -24,7 +24,7 @@ spec:
         app: camunda
     spec:
       containers:
-      - image: camunda/camunda-bpm-platform:latest
+      - image: krzychh/private:mycamunda
         imagePullPolicy: Always
         name: camunda-bpm-platform
         resources: {}
@@ -33,6 +33,8 @@ spec:
               name: camunda-config
           - secretRef:
               name: camunda-secret
+      nodeSelector:
+        prio: master
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler

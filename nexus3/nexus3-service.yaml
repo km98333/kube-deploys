@@ -8,9 +8,14 @@ metadata:
 spec:
   externalTrafficPolicy: Cluster
   ports:
-  - port: 80
+  - name: gui
+    port: 8081
     protocol: TCP
     targetPort: 8081
+  - name: docker
+    port: 8123
+    protocol: TCP
+    targetPort: 8123 
   selector:
     app: nexus3
   sessionAffinity: None
