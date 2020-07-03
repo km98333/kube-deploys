@@ -6,7 +6,6 @@ metadata:
   name: nexus3
   namespace: default
 spec:
-  externalTrafficPolicy: Cluster
   ports:
   - name: gui
     port: 8081
@@ -19,4 +18,4 @@ spec:
   selector:
     app: nexus3
   sessionAffinity: None
-  type: LoadBalancer
+  type: ClusterIP

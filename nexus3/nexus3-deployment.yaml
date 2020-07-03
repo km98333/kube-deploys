@@ -27,10 +27,10 @@ spec:
         app: nexus3
     spec:
       volumes:
-        - name: nexus3-nfs
+        - name: nexus3-data
           nfs:
             server: 192.168.1.3
-            path: /nfs/nexus
+            path: /nfs/nexus3
       containers:
       - image: sonatype/nexus3:latest
         imagePullPolicy: Always
@@ -39,7 +39,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-          - name: nexus3-nfs
+          - name: nexus3-data
             mountPath: /nexus-data
       dnsPolicy: ClusterFirst
       restartPolicy: Always

@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: 250m
+    nginx/client_max_body_size: 250m
+  name: milky
+spec:
+  tls:
+  - hosts: 
+    - nexus.milky-way.dev
+    - registry.milky-way.dev
+    secretName: milkyway
+  rules:
+  - host: nexus.milky-way.dev
+    http:
+      paths:
+      - path: /
+        backend:
+           serviceName: nexus3
+           servicePort: 8081
+  - host: registry.milky-way.dev
+    http:
+      paths:
+      - path: /
+        backend:
+           serviceName: nexus3
+           servicePort: 8123
